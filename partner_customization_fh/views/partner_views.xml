@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+        <!-- Extend the form view of res.partner to include the new fields -->
+        <record model="ir.ui.view" id="res_partner_custom_form_view">
+            <field name="name">res.partner.custom.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+
+                <xpath expr="//field[@name='vat']" position="after">
+
+
+                    <field name="id_number"/>
+                    <field name="registration_number"/>
+                    <field name="gender"/>
+                    <field name="date_of_birth"/>
+                    <field name="PIN_NO"/>
+
+                </xpath>
+                <xpath expr="//field[@name='website']" position="replace"/>
+                <xpath expr="//field[@name='function']" position="replace"/>
+                <xpath expr="//field[@name='category_id']" position="replace"/>
+                <field name="vat" readonly="1"/>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="res_partner_tree_inherit">
+            <field name="name">res.partner.tree.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='display_name']" position="after">
+                    <field name="registration_number"/>
+                    <field name="id_number"/>
+                </xpath>
+
+                <xpath expr="//field[@name='user_id']" position="replace"/>
+                <xpath expr="//field[@name='city']" position="replace"/>
+                <xpath expr="//field[@name='country_id']" position="replace"/>
+            </field>
+        </record>
+    </data>
+</odoo>
